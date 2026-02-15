@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-white text-accent-navy overflow-x-hidden">
       <Navbar scrolled={scrolled} />
       <Hero />
       <Services />

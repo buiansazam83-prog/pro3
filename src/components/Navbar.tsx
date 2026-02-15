@@ -20,17 +20,17 @@ export default function Navbar({ scrolled }: NavbarProps) {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white shadow-md'
-          : 'bg-white'
+          ? 'bg-white/95 backdrop-blur-md shadow-lg'
+          : 'bg-gradient-to-r from-accent-navy to-blue-950 text-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center gap-3">
-            <Shield className="w-8 h-8 text-green-600" strokeWidth={2} />
+            <Shield className={`w-8 h-8 ${scrolled ? 'text-accent-teal' : 'text-accent-cyan'}`} strokeWidth={2} />
             <div>
-              <div className="text-lg font-bold text-gray-900">EXA WICOM</div>
-              <div className="text-xs font-semibold text-green-600 tracking-wider">
+              <div className={`text-lg font-bold ${scrolled ? 'text-accent-navy' : 'text-white'}`}>EXA WICOM</div>
+              <div className={`text-xs font-semibold ${scrolled ? 'text-accent-teal' : 'text-accent-cyan'} tracking-wider`}>
                 LTD
               </div>
             </div>
@@ -41,7 +41,11 @@ export default function Navbar({ scrolled }: NavbarProps) {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-gray-700 hover:text-green-600 font-medium transition-colors duration-300"
+                className={`font-medium transition-colors duration-300 ${
+                  scrolled
+                    ? 'text-accent-navy hover:text-accent-teal'
+                    : 'text-white hover:text-accent-cyan'
+                }`}
               >
                 {link.label}
               </a>
@@ -49,7 +53,11 @@ export default function Navbar({ scrolled }: NavbarProps) {
           </div>
 
           <div className="hidden md:flex">
-            <button className="px-6 py-2.5 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all duration-300 hover:shadow-lg">
+            <button className={`px-6 py-2.5 font-semibold rounded-full transition-all duration-300 hover:shadow-lg ${
+              scrolled
+                ? 'bg-accent-teal text-white hover:bg-accent-cyan'
+                : 'bg-accent-cyan text-white hover:bg-accent-teal'
+            }`}>
               Get a Free Quote
             </button>
           </div>
@@ -59,26 +67,32 @@ export default function Navbar({ scrolled }: NavbarProps) {
             className="md:hidden p-2"
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-900" />
+              <X className={`w-6 h-6 ${scrolled ? 'text-accent-navy' : 'text-white'}`} />
             ) : (
-              <Menu className="w-6 h-6 text-gray-900" />
+              <Menu className={`w-6 h-6 ${scrolled ? 'text-accent-navy' : 'text-white'}`} />
             )}
           </button>
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden pb-4 space-y-2 border-t border-gray-200">
+          <div className={`md:hidden pb-4 space-y-2 border-t ${
+            scrolled ? 'border-gray-200 bg-white' : 'border-white/20 bg-gradient-to-b from-accent-navy to-blue-950'
+          }`}>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className={`block px-4 py-2 rounded-lg transition-colors ${
+                  scrolled
+                    ? 'text-accent-navy hover:bg-blue-50'
+                    : 'text-white hover:bg-white/10'
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <button className="w-full mt-4 px-6 py-2.5 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all duration-300">
+            <button className="w-full mt-4 px-6 py-2.5 bg-accent-teal text-white font-semibold rounded-full hover:bg-accent-cyan transition-all duration-300">
               Get a Free Quote
             </button>
           </div>
